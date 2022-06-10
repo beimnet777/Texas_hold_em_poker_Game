@@ -110,4 +110,158 @@ class CardBucket:
                 visitedCards.append(i.num)
         triplets = [x for x in cardRepeatitions.values() if len(x) >= 3]
         return [max(triplets , key = lambda x: x[0].num)[0]] if len(triplets) > 0 else None
-   
+     
+
+    def hasStraight(self):
+        self.cards.sort(key = lambda x:x.num)
+        cardLetters = [x.letter for x in self.cards]
+        straights = []
+        previous = None
+        count = 0
+        for i in self.cards:
+            if previous == None or i.num == previous+1:
+                previous = i.num
+                count+=1
+                if count>=5:
+                    straights = [i,count]
+                elif count==4 and i.letter == "5" and "a" in cardLetters:
+                    straights = [i,count]
+            elif previous == i.num:
+                pass
+            else:
+                count = 0
+                previous = i.num
+        if len(straights)>0:
+            return [straights[0]]
+        return None
+
+
+    def hasFlush(self):
+        shapeCards = {}
+        visitedShapes = []
+        for i in self.cards:
+            if i.shape in visitedShapes:
+                shapeCards[i.shape].append(i)
+            else:
+                shapeCards[i.shape] = [i]
+                visitedShapes.append(i.shape)
+        flushCards = [shapeCards[x] for x in shapeCards.keys() if len(shapeCards[x])>=5]
+        if len(flushCards)>0:
+            return [max(flushCards[0], key = lambda x: x.num)]
+        return None
+
+
+    def hasFullHouse(self):
+        cardRepeatitions = {}
+        visitedCards = []
+        for i in self.cards:
+            if i.num in visitedCards:
+                cardRepeatitions[i.num].append(i)
+            else:
+                cardRepeatitions[i.num] = [i]
+                visitedCards.append(i.num)
+        repeated = [x for x in cardRepeatitions.values() if len(x)>=2]
+        repeated3times = [x for x in repeated if len(x)>=3]
+        if len(repeated3times)>=1 and len(repeated)>=2:
+            best = max(repeated3times,key=lambda x:x[0].num)
+            repeated.remove(best)
+            best = best[0]
+            secondBest = max(repeated, key=lambda x:x[0].num)
+            secondBest = secondBest[0]
+            return [best,secondBest]
+        return None
+
+
+
+    def hasFourOfAKind(self):
+        cardRepeatitions = {}
+        visitedCards = []
+        for i in self.cards:
+            if i.num in visitedCards:
+                cardRepeatitions[i.num].append(i)
+            else:
+                cardRepeatitions[i.num] = [i]
+                visitedCards.append(i.num)
+        quads = [x for x in cardRepeatitions.values() if len(x) >= 4]
+        return [max(quads , key = lambda x: x[0].num)[0]] if len(quads) > 0 else None
+
+
+    def hasStraightFlush(self):
+        shapeRepeatitions = {}
+        visitedShapes = []
+        for i in self.cards:
+            if i.shape in visitedShapes:
+                shapeRepeatitions[i.shape].append(i)
+            else:
+                visitedShapes.append(i.shape)
+                shapeRepeatitions[i.shape] = [i]
+        repeatitions5times = [x for x in shapeRepeatitions.values() if len(x)>=5]
+        if len(repeatitions5times)==0:
+            return None
+        straight = None
+        for i in repeatitions5times:
+            count = 0
+            i.sort(key=lambda x:x.num)
+            previous = None
+            cardLetters = [x.letter for x in i]
+            for j in i:
+                if previous == None or j.num == previous+1:
+                    previous = j.num
+                    count+=1
+                    if count>=5:
+                        straight = j
+                    elif count==4 and j.letter == "5" and "a" in cardLetters:
+                        straight = j
+                elif previous == j.num:
+                    pass
+                else:
+                    count = 0
+                    previous = j.num
+
+        return [straight] if straight is not None else None
+
+
+    def checkAll(self):
+        functions = [self.hasStraightFlush,self.hasFourOfAKind,self.hasFullHouse,self.hasFlush,self.hasStraight,self.hasThreeOfAKind,self.hasTwoPair,self.hasPair,self.highestCard]
+        counter  = 9
+        for i in functions:
+            ans = i()
+            if ans is not None:
+                return [counter]+ans
+            counter-=1
+
+
+
+# a = Card("A","spade",14)
+# b = Card("2","spade",2)
+# c = Card("3","spade",3)
+# d = Card("4","spade",4)
+# e = Card("5","spade",5)
+# # f = Card("6","spade",6)
+# l = Card("7","spade",7)
+# g = Card("8","spade",8)
+# h = Card("9","spade",9)
+# i = Card("10","spade",10)
+# j = Card("j","spade",11)
+# k = Card("q","spade",12)
+
+# cardList = [a,b,c,d,e,g,h,i]#,j,k,l,f]
+
+# cardbuk = CardBucket(cardList)
+
+# print(cardbuk.hasFlush())
+# cards = [card for card in  CardBucket.generateRandom()]
+# cards2 = [card for card in  CardBucket.generateRandom()]
+# print([card.__str__() for card in  cards])
+# print([card.__str__() for card in CardBucket(cards).hasFullHouse()])
+# print(CardBucket(cards).hasFullHouse().__str__())
+
+
+
+# print([card.__str__() for card in cards])
+# print([card.__str__() for card in cards2])
+# print(CardBucket.compare(CardBucket(cards),CardBucket(cards2)))
+
+
+# print([card.__str__() for card in CardBucket(cards).checkAll()])
+# print([card.__str__() for card in CardBucket(cards2).checkAll()])
