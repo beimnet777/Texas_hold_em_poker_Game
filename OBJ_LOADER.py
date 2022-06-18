@@ -15,7 +15,7 @@ class ObjLoader:
                 coordinates.append(int(d)-1)
 
 
-    @staticmethod # sorted vertex buffer for use with glDrawArrays function
+    @staticmethod 
     def create_sorted_vertex_buffer(indices_data, vertices, textures, normals):
         for i, ind in enumerate(indices_data):
             if i % 3 == 0: # sort the vertex coordinates
@@ -42,12 +42,12 @@ class ObjLoader:
 
     @staticmethod
     def load_model(file, sorted=True):
-        vert_coords = [] # will contain all the vertex coordinates
-        tex_coords = [] # will contain all the texture coordinates
-        norm_coords = [] # will contain all the vertex normals
+        vert_coords = [] 
+        tex_coords = [] 
+        norm_coords = [] 
 
-        all_indices = [] # will contain all the vertex, texture and normal indices
-        indices = [] # will contain the indices for indexed drawing
+        all_indices = [] 
+        indices = [] 
 
 
         with open(file, 'r') as f:
@@ -69,12 +69,12 @@ class ObjLoader:
                 line = f.readline()
 
         if sorted:
-            # use with glDrawArrays
+          
             ObjLoader.create_sorted_vertex_buffer(all_indices, vert_coords, tex_coords, norm_coords)
 
-        # ObjLoader.show_buffer_data(ObjLoader.buffer)
+        
 
-        buffer = ObjLoader.buffer.copy() # create a local copy of the buffer list, otherwise it will overwrite the static field buffer
-        ObjLoader.buffer = [] # after copy, make sure to set it back to an empty list
+        buffer = ObjLoader.buffer.copy() 
+        ObjLoader.buffer = [] 
 
         return np.array(indices, dtype='uint32'), np.array(buffer, dtype='float32')
