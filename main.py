@@ -111,7 +111,7 @@ def fold():
     folding.play()
     time.sleep(1)
     losing.play()
-    time.sleep(.5)
+    time.sleep(2.5)
     player_won.play()
     global flip1
     print("folded^^^^^")
@@ -517,21 +517,21 @@ intro.play()
 while True:
     if len(table_bucket.cards)>=5 and rot_third >0:
         pick=0
-    if len(table_bucket.cards)>=5 and rot_third <0:
+    elif len(table_bucket.cards)>=5 and rot_third <0:
         time.sleep(2)
 
         winner=CardBucket.compare(player_bucket,bot_bucket)
         if winner==1:
             wining.play()
-            time.sleep(.5)
+            time.sleep(2.8)
             player_lost.play()
         elif winner==-1:
             losing.play()
-            time.sleep(.5)
+            time.sleep(2.5)
             player_won.play()
         else:
             tie.play()
-            time.sleep(.5)
+            time.sleep(2.5)
             player_tie.play()
         time.sleep(2)
         pygame.quit()
@@ -583,7 +583,7 @@ while True:
             elif event.key == pygame.K_f :
                 flip1+=4
                 wining.play()
-                time.sleep(.5)
+                time.sleep(2.5)
                 player_lost.play()
                 print("you lost dumb ass")
                 time.sleep(2)
@@ -616,7 +616,6 @@ while True:
 
     model = pyrr.matrix44.multiply(scale,mod)
     
-    # draw the chibi character
     glBindVertexArray(VAO[0])
     glBindTexture(GL_TEXTURE_2D, textures[0])
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model)
@@ -646,7 +645,6 @@ while True:
 
     model = pyrr.matrix44.multiply(scale,mod)
     
-    # draw the chibi character
     glBindVertexArray(VAO[8])
     glBindTexture(GL_TEXTURE_2D, textures[8])
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model)
@@ -661,7 +659,6 @@ while True:
     mod = pyrr.matrix44.multiply(rot_y, obj_pos8_1)
 
     model = pyrr.matrix44.multiply(scale,mod)
-    # draw the chibi character
     glBindVertexArray(VAO[11])
     glBindTexture(GL_TEXTURE_2D, textures[11])
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model)
@@ -679,7 +676,6 @@ while True:
 
  
 
-    # draw the chibi character
     glBindVertexArray(VAO[1])
     glBindTexture(GL_TEXTURE_2D, textures[1])
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model)
@@ -696,7 +692,6 @@ while True:
 
  
 
-    # draw the chibi character
     glBindVertexArray(VAO[2])
     glBindTexture(GL_TEXTURE_2D, textures[2])
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model)
@@ -712,7 +707,6 @@ while True:
 
  
 
-    # draw the chibi character
     glBindVertexArray(VAO[3])
     glBindTexture(GL_TEXTURE_2D, textures[3])
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model)
@@ -733,7 +727,6 @@ while True:
 
  
 
-    # draw the chibi character
     glBindVertexArray(VAO[4])
     glBindTexture(GL_TEXTURE_2D, textures[4])
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model)
@@ -749,7 +742,6 @@ while True:
 
  
 
-    # draw the chibi character
     glBindVertexArray(VAO[5])
     glBindTexture(GL_TEXTURE_2D, textures[5])
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model)
@@ -765,7 +757,6 @@ while True:
 
  
 
-    # draw the chibi character
     glBindVertexArray(VAO[6])
     glBindTexture(GL_TEXTURE_2D, textures[6])
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model)
@@ -781,7 +772,6 @@ while True:
 
  
 
-    # draw the chibi character
     glBindVertexArray(VAO[7])
     glBindTexture(GL_TEXTURE_2D, textures[7])
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model)
@@ -789,12 +779,9 @@ while True:
 
 #*************************************************************
 
-#**********************************************************************
-    if rot>=5:
-        pick2=0
-        pick+=0.4
     if rot==7.5:
-        pick+=0.01
+        pick2=0
+        pick+=0.1
     if pick>1:
         pick=1
     scale=[[.2,0,0,0],[0,1.4,0,0],[0,0,.2,0],[0,0,0,1]]
@@ -808,7 +795,6 @@ while True:
 
  
 
-    # draw the chibi character
     glBindVertexArray(VAO[9])
     glBindTexture(GL_TEXTURE_2D, textures[9])
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model)
@@ -826,7 +812,6 @@ while True:
 
  
 
-    # draw the chibi character
     glBindVertexArray(VAO[10])
     glBindTexture(GL_TEXTURE_2D, textures[10])
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model)
@@ -842,7 +827,6 @@ while True:
 
  
 
-    # draw the chibi character
     glBindVertexArray(VAO[12])
     glBindTexture(GL_TEXTURE_2D, textures[12])
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model)
@@ -859,7 +843,6 @@ while True:
 
  
 
-    # draw the chibi character
     glBindVertexArray(VAO[13])
     glBindTexture(GL_TEXTURE_2D, textures[13])
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model)
