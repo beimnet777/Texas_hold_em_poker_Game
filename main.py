@@ -4,7 +4,7 @@ from OpenGL.GLU import *
 from OpenGL.GL.shaders import *
 import pyrr
 from TextureLoader import load_texture
-from OBJ_LOADER import ObjLoader
+from OBJECT_IMPORTER import ObjLoader
 import os
 
 import pygame
