@@ -94,6 +94,8 @@ def check():
         checked=False
         raised=False
     checking.play()
+
+
 def raise_card(is_bot):
     raising.play()
     print("rasied^^^^^")
@@ -103,6 +105,8 @@ def raise_card(is_bot):
         bot_current-=50
     else:
         player_current-=50 
+
+
 def fold():
     folding.play()
     time.sleep(1)
@@ -117,6 +121,8 @@ def fold():
     time.sleep(2)
     pygame.quit()
     quit()
+
+
 def allIn():
     global flip1,bot_current,total_betted_birr,allin
     total_betted_birr+=bot_current
@@ -180,159 +186,160 @@ object_08_1, object_buffer8_1 = ObjLoader.load_model("Objects/robot body.obj")
 object_09, object_buffer9 = ObjLoader.load_model("New cards/"+objs[7])
 object_10, object_buffer10 = ObjLoader.load_model("New cards/"+objs[8])
 object_11, object_buffer11 = ObjLoader.load_model("Objects/floor.obj")
+object_12, object_buffer12 = ObjLoader.load_model("Objects/control carved.obj")
 
 
 
 shader = compileProgram(compileShader(vertex_src, GL_VERTEX_SHADER), compileShader(fragment_src, GL_FRAGMENT_SHADER))
 
 # VAO and VBO
-VAO = glGenVertexArrays(13)
-VBO = glGenBuffers(13)
+VAO = glGenVertexArrays(14)
+VBO = glGenBuffers(14)
 
-# Chibi VAO
+# 
 glBindVertexArray(VAO[0])
-# Chibi Vertex Buffer Object
+# 
 glBindBuffer(GL_ARRAY_BUFFER, VBO[0])
 glBufferData(GL_ARRAY_BUFFER, object_buffer.nbytes, object_buffer, GL_STATIC_DRAW)
 
 
 
-# chibi vertices
+# 
 glEnableVertexAttribArray(0)
 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, object_buffer.itemsize * 8, ctypes.c_void_p(0))
-# chibi textures
+
 glEnableVertexAttribArray(1)
 glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, object_buffer.itemsize * 8, ctypes.c_void_p(12))
-# chibi normals
+# 
 glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, object_buffer.itemsize * 8, ctypes.c_void_p(20))
 glEnableVertexAttribArray(2)
 
 #**********************************************
 glBindVertexArray(VAO[1])
-# Chibi Vertex Buffer Object
+# 
 glBindBuffer(GL_ARRAY_BUFFER, VBO[1])
 glBufferData(GL_ARRAY_BUFFER, object_buffer1.nbytes, object_buffer1, GL_STATIC_DRAW)
 
 
 
-# chibi vertices
+# 
 glEnableVertexAttribArray(0)
 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, object_buffer1.itemsize * 8, ctypes.c_void_p(0))
-# chibi textures
+
 glEnableVertexAttribArray(1)
 glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, object_buffer1.itemsize * 8, ctypes.c_void_p(12))
-# chibi normals
+# 
 glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, object_buffer1.itemsize * 8, ctypes.c_void_p(20))
 glEnableVertexAttribArray(2)
 #*******************************************************
 
 #**********************************************
 glBindVertexArray(VAO[2])
-# Chibi Vertex Buffer Object
+# 
 glBindBuffer(GL_ARRAY_BUFFER, VBO[2])
 glBufferData(GL_ARRAY_BUFFER, object_buffer2.nbytes, object_buffer2, GL_STATIC_DRAW)
 
 
 
-# chibi vertices
+# 
 glEnableVertexAttribArray(0)
 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, object_buffer2.itemsize * 8, ctypes.c_void_p(0))
-# chibi textures
+
 glEnableVertexAttribArray(1)
 glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, object_buffer2.itemsize * 8, ctypes.c_void_p(12))
-# chibi normals
+# 
 glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, object_buffer2.itemsize * 8, ctypes.c_void_p(20))
 glEnableVertexAttribArray(2)
 #*******************************************************
 #**********************************************
 glBindVertexArray(VAO[3])
-# Chibi Vertex Buffer Object
+# 
 glBindBuffer(GL_ARRAY_BUFFER, VBO[3])
 glBufferData(GL_ARRAY_BUFFER, object_buffer3.nbytes, object_buffer3, GL_STATIC_DRAW)
 
 
 
-# chibi vertices
+# 
 glEnableVertexAttribArray(0)
 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, object_buffer3.itemsize * 8, ctypes.c_void_p(0))
-# chibi textures
+
 glEnableVertexAttribArray(1)
 glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, object_buffer3.itemsize * 8, ctypes.c_void_p(12))
-# chibi normals
+# 
 glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, object_buffer3.itemsize * 8, ctypes.c_void_p(20))
 glEnableVertexAttribArray(2)
 #*******************************************************
 #**********************************************
 glBindVertexArray(VAO[4])
-# Chibi Vertex Buffer Object
+# 
 glBindBuffer(GL_ARRAY_BUFFER, VBO[4])
 glBufferData(GL_ARRAY_BUFFER, object_buffer4.nbytes, object_buffer4, GL_STATIC_DRAW)
 
 
 
-# chibi vertices
+# 
 glEnableVertexAttribArray(0)
 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, object_buffer4.itemsize * 8, ctypes.c_void_p(0))
-# chibi textures
+
 glEnableVertexAttribArray(1)
 glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, object_buffer4.itemsize * 8, ctypes.c_void_p(12))
-# chibi normals
+# 
 glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, object_buffer4.itemsize * 8, ctypes.c_void_p(20))
 glEnableVertexAttribArray(2)
 #*******************************************************
 
 #**********************************************
 glBindVertexArray(VAO[5])
-# Chibi Vertex Buffer Object
+# 
 glBindBuffer(GL_ARRAY_BUFFER, VBO[5])
 glBufferData(GL_ARRAY_BUFFER, object_buffer5.nbytes, object_buffer5, GL_STATIC_DRAW)
 
 
 
-# chibi vertices
+# 
 glEnableVertexAttribArray(0)
 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, object_buffer5.itemsize * 8, ctypes.c_void_p(0))
-# chibi textures
+
 glEnableVertexAttribArray(1)
 glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, object_buffer5.itemsize * 8, ctypes.c_void_p(12))
-# chibi normals
+# 
 glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, object_buffer5.itemsize * 8, ctypes.c_void_p(20))
 glEnableVertexAttribArray(2)
 #*******************************************************
 #**********************************************
 glBindVertexArray(VAO[6])
-# Chibi Vertex Buffer Object
+# 
 glBindBuffer(GL_ARRAY_BUFFER, VBO[6])
 glBufferData(GL_ARRAY_BUFFER, object_buffer6.nbytes, object_buffer6, GL_STATIC_DRAW)
 
 
 
-# chibi vertices
+# 
 glEnableVertexAttribArray(0)
 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, object_buffer6.itemsize * 8, ctypes.c_void_p(0))
-# chibi textures
+
 glEnableVertexAttribArray(1)
 glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, object_buffer6.itemsize * 8, ctypes.c_void_p(12))
-# chibi normals
+# 
 glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, object_buffer6.itemsize * 8, ctypes.c_void_p(20))
 glEnableVertexAttribArray(2)
 #*******************************************************
 
 #**********************************************
 glBindVertexArray(VAO[7])
-# Chibi Vertex Buffer Object
+# 
 glBindBuffer(GL_ARRAY_BUFFER, VBO[7])
 glBufferData(GL_ARRAY_BUFFER, object_buffer7.nbytes, object_buffer7, GL_STATIC_DRAW)
 
 
 
-# chibi vertices
+# 
 glEnableVertexAttribArray(0)
 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, object_buffer7.itemsize * 8, ctypes.c_void_p(0))
-# chibi textures
+
 glEnableVertexAttribArray(1)
 glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, object_buffer7.itemsize * 8, ctypes.c_void_p(12))
-# chibi normals
+# 
 glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, object_buffer7.itemsize * 8, ctypes.c_void_p(20))
 glEnableVertexAttribArray(2)
 #*******************************************************
@@ -340,91 +347,110 @@ glEnableVertexAttribArray(2)
 
 #**********************************************
 glBindVertexArray(VAO[8])
-# Chibi Vertex Buffer Object
+# 
 glBindBuffer(GL_ARRAY_BUFFER, VBO[8])
 glBufferData(GL_ARRAY_BUFFER, object_buffer8.nbytes, object_buffer8, GL_STATIC_DRAW)
 
 
 
-# chibi vertices
+# 
 glEnableVertexAttribArray(0)
 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, object_buffer8.itemsize * 8, ctypes.c_void_p(0))
-# chibi textures
+
 glEnableVertexAttribArray(1)
 glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, object_buffer8.itemsize * 8, ctypes.c_void_p(12))
-# chibi normals
+# 
 glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, object_buffer8.itemsize * 8, ctypes.c_void_p(20))
 glEnableVertexAttribArray(2)
 #*******************************************************
 
 
 glBindVertexArray(VAO[9])
-# Chibi Vertex Buffer Object
+# 
 glBindBuffer(GL_ARRAY_BUFFER, VBO[9])
 glBufferData(GL_ARRAY_BUFFER, object_buffer9.nbytes, object_buffer9, GL_STATIC_DRAW)
 
 
 
-# chibi vertices
+# 
 glEnableVertexAttribArray(0)
 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, object_buffer9.itemsize * 8, ctypes.c_void_p(0))
-# chibi textures
+
 glEnableVertexAttribArray(1)
 glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, object_buffer9.itemsize * 8, ctypes.c_void_p(12))
-# chibi normals
+# 
 glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, object_buffer9.itemsize * 8, ctypes.c_void_p(20))
 glEnableVertexAttribArray(2)
 #*******************************************************
 
 glBindVertexArray(VAO[10])
-# Chibi Vertex Buffer Object
+# 
 glBindBuffer(GL_ARRAY_BUFFER, VBO[10])
 glBufferData(GL_ARRAY_BUFFER, object_buffer10.nbytes, object_buffer10, GL_STATIC_DRAW)
 
 
 
-# chibi vertices
+# 
 glEnableVertexAttribArray(0)
 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, object_buffer10.itemsize * 8, ctypes.c_void_p(0))
-# chibi textures
+
 glEnableVertexAttribArray(1)
 glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, object_buffer10.itemsize * 8, ctypes.c_void_p(12))
-# chibi normals
+# 
 glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, object_buffer10.itemsize * 8, ctypes.c_void_p(20))
 glEnableVertexAttribArray(2)
 #*******************************************************
 glBindVertexArray(VAO[11])
-# Chibi Vertex Buffer Object
+# 
 glBindBuffer(GL_ARRAY_BUFFER, VBO[11])
 glBufferData(GL_ARRAY_BUFFER, object_buffer8_1.nbytes, object_buffer8_1, GL_STATIC_DRAW)
 
 
 
-# chibi vertices
+# 
 glEnableVertexAttribArray(0)
 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, object_buffer8_1.itemsize * 8, ctypes.c_void_p(0))
-# chibi textures
+
 glEnableVertexAttribArray(1)
 glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, object_buffer8_1.itemsize * 8, ctypes.c_void_p(12))
-# chibi normals
+# 
 glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, object_buffer8_1.itemsize * 8, ctypes.c_void_p(20))
 glEnableVertexAttribArray(2)
 #*******************************************************
 glBindVertexArray(VAO[12])
-# Chibi Vertex Buffer Object
+# 
 glBindBuffer(GL_ARRAY_BUFFER, VBO[12])
 glBufferData(GL_ARRAY_BUFFER, object_buffer11.nbytes, object_buffer11, GL_STATIC_DRAW)
 
 
 
-# chibi vertices
+# 
 glEnableVertexAttribArray(0)
 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, object_buffer11.itemsize * 8, ctypes.c_void_p(0))
-# chibi textures
+
 glEnableVertexAttribArray(1)
 glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, object_buffer11.itemsize * 8, ctypes.c_void_p(12))
-# chibi normals
+# 
 glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, object_buffer11.itemsize * 8, ctypes.c_void_p(20))
+glEnableVertexAttribArray(2)
+#*******************************************
+
+
+glBindVertexArray(VAO[13])
+# 
+glBindBuffer(GL_ARRAY_BUFFER, VBO[13])
+glBufferData(GL_ARRAY_BUFFER, object_buffer12.nbytes, object_buffer12, GL_STATIC_DRAW)
+
+
+
+
+glEnableVertexAttribArray(0)
+glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, object_buffer12.itemsize * 8, ctypes.c_void_p(0))
+
+glEnableVertexAttribArray(1)
+glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, object_buffer12.itemsize * 8, ctypes.c_void_p(12))
+
+glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, object_buffer12.itemsize * 8, ctypes.c_void_p(20))
 glEnableVertexAttribArray(2)
 
 
@@ -432,8 +458,7 @@ glEnableVertexAttribArray(2)
 
 
 
-
-textures = glGenTextures(13)
+textures = glGenTextures(14)
 load_texture("Textures/a.jpg", textures[0])
 load_texture("Textures/jj.jpg", textures[1])
 load_texture("Textures/jj.jpg", textures[2])
@@ -447,6 +472,7 @@ load_texture("Textures/jj.jpg", textures[9])
 load_texture("Textures/jj.jpg", textures[10])
 load_texture("Textures/iron.jpg", textures[11])
 load_texture("Textures/floor.jpg", textures[12])
+load_texture("Textures/iron.jpg", textures[13])
 
 
 glUseProgram(shader)
@@ -469,6 +495,7 @@ obj_pos8_1 = pyrr.matrix44.create_from_translation(pyrr.Vector3([0,2.5 , -2]))
 obj_pos9 = pyrr.matrix44.create_from_translation(pyrr.Vector3([-.3,3 , -1]))
 obj_pos10 = pyrr.matrix44.create_from_translation(pyrr.Vector3([.3,3 , -1]))
 obj_pos11 = pyrr.matrix44.create_from_translation(pyrr.Vector3([0,-.2 , 0]))
+obj_pos12 = pyrr.matrix44.create_from_translation(pyrr.Vector3([2.1,4.6 , 0]))
 
 
 # eye, target, up
@@ -563,7 +590,7 @@ while True:
                 wining.play()
                 time.sleep(.5)
                 player_lost.play()
-                print("you lost bitch")
+                print("you lost dumb ass")
                 time.sleep(2)
                 pygame.quit()
                 quit()
@@ -827,6 +854,23 @@ while True:
     glDrawArrays(GL_TRIANGLES, 0, len(object_11))
 
 #*************************************************************  
+#**********************************************************************
+    scale=[[.1,0,0,0],[0,.03,0,0],[0,0,.2,0],[0,0,0,1]]
+    rot_x = pyrr.Matrix44.from_x_rotation(-1.57)
+    rot_y = pyrr.Matrix44.from_y_rotation(.02)
+    mod = pyrr.matrix44.multiply(rot_x, obj_pos12)
+    mod = pyrr.matrix44.multiply(rot_y, mod)
+    model = pyrr.matrix44.multiply(scale,mod)
+
+ 
+
+    # draw the chibi character
+    glBindVertexArray(VAO[13])
+    glBindTexture(GL_TEXTURE_2D, textures[13])
+    glUniformMatrix4fv(model_loc, 1, GL_FALSE, model)
+    glDrawArrays(GL_TRIANGLES, 0, len(object_12))
+
+#************************************************************* 
 
 
 
