@@ -50,6 +50,8 @@ glViewport(0, 0, 1400,720)
 
 #********************************************************************************
 cards=CardBucket.generateRandom()
+cards[7]=Card('8','h',8)
+cards[8]=Card('8','f',8)
 objs=[str(i)+".obj" for i in cards]
 
 
@@ -114,10 +116,10 @@ def fold():
     time.sleep(2.5)
     player_won.play()
     global flip1
-    print("folded^^^^^")
+
     global filp1
     flip1+=4
-    print([str(i) for  i in bot_bucket.cards])
+
     time.sleep(2)
     pygame.quit()
     quit()
@@ -144,8 +146,9 @@ async def bot_reponse(table_bucket,bot_bucket):
         if value==None:
             check()
         else:
+            value=2
             raise_card(True)
-            print([str(i) for i in bot_bucket.cards])
+
     else:
         value=bot_bucket.checkAll()[0]
         if value>=7:
@@ -160,9 +163,9 @@ async def bot_reponse(table_bucket,bot_bucket):
                 fold()
             else:
                 check()
-    print(value)
     if raised and value!=None and value <3:
         raised=False
+
     
             
     
@@ -516,7 +519,7 @@ left=True
 intro.play()
 while True:
     if len(table_bucket.cards)>=5 and rot_third >0:
-        pick=0
+        pick=-1.2
     elif len(table_bucket.cards)>=5 and rot_third <0:
         time.sleep(2)
 
@@ -539,9 +542,6 @@ while True:
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            print(bot_current)
-            print(player_current)
-            print(total_betted_birr)
             pygame.quit()
             quit()
         elif event.type == pygame.KEYDOWN:
@@ -585,7 +585,6 @@ while True:
                 wining.play()
                 time.sleep(2.5)
                 player_lost.play()
-                print("you lost dumb ass")
                 time.sleep(2)
                 pygame.quit()
                 quit()
