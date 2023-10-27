@@ -50,8 +50,6 @@ glViewport(0, 0, 1400,720)
 
 #********************************************************************************
 cards=CardBucket.generateRandom()
-cards[7]=Card('8','h',8)
-cards[8]=Card('8','f',8)
 objs=[str(i)+".obj" for i in cards]
 
 
